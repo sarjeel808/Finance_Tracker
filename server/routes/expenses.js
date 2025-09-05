@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Add a new expense
 router.post('/', async (req, res) => {
   const expense = new Expense({
     category: req.body.category,
@@ -35,7 +34,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get a specific expense
 router.get('/:id', async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);
@@ -46,7 +44,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update an expense
 router.put('/:id', async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);
@@ -64,7 +61,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete an expense
 router.delete('/:id', async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);

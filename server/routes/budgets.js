@@ -1,10 +1,8 @@
-
 const express = require('express');
 const router = express.Router();
 const Budget = require('../models/Budget');
 const Expense = require('../models/Expense');
 
-// Get all budgets for a specific user
 router.get('/', async (req, res) => {
   try {
     // In a real app, you would get the userId from JWT auth middleware
@@ -17,7 +15,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Add a new budget
 router.post('/', async (req, res) => {
   const budget = new Budget({
     category: req.body.category,
@@ -35,15 +32,12 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Calculate spent amounts for each budget
 router.get('/calculate', async (req, res) => {
   try {
     const userId = req.query.userId || 'demo-user';
     
-    // Get all budgets
     const budgets = await Budget.find({ userId });
     
-    // For each budget, calculate the sum of expenses in that category
     const currentDate = new Date();
     const results = [];
     
@@ -51,7 +45,6 @@ router.get('/calculate', async (req, res) => {
       let startDate;
       const endDate = new Date();
       
-      // Determine the start date based on the budget period
       switch(budget.period) {
         case 'Weekly':
           startDate = new Date(currentDate);
@@ -71,17 +64,14 @@ router.get('/calculate', async (req, res) => {
           startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1); // Default to monthly
       }
       
-      // Find expenses in this category within the date range
       const expenses = await Expense.find({
         userId,
         category: budget.category,
         date: { $gte: startDate, $lte: endDate }
       });
       
-      // Calculate total spent
       const spent = expenses.reduce((sum, expense) => sum + expense.amount, 0);
       
-      // Update the budget with the calculated amount
       const updatedBudget = await Budget.findByIdAndUpdate(
         budget._id,
         { spent },
@@ -97,7 +87,6 @@ router.get('/calculate', async (req, res) => {
   }
 });
 
-// Get a specific budget
 router.get('/:id', async (req, res) => {
   try {
     const budget = await Budget.findById(req.params.id);
@@ -108,7 +97,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update a budget
 router.put('/:id', async (req, res) => {
   try {
     const updatedBudget = await Budget.findByIdAndUpdate(
@@ -124,7 +112,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a budget
 router.delete('/:id', async (req, res) => {
   try {
     const budget = await Budget.findById(req.params.id);

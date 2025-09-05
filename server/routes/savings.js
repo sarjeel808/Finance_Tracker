@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Add a new savings goal
 router.post('/', async (req, res) => {
   const savingsGoal = new SavingsGoal({
     name: req.body.name,
@@ -34,7 +33,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get a specific savings goal
 router.get('/:id', async (req, res) => {
   try {
     const savingsGoal = await SavingsGoal.findById(req.params.id);
@@ -45,7 +43,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update a savings goal
 router.put('/:id', async (req, res) => {
   try {
     const savingsGoal = await SavingsGoal.findById(req.params.id);
@@ -63,7 +60,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Add contribution to a savings goal
 router.post('/:id/contribute', async (req, res) => {
   try {
     const savingsGoal = await SavingsGoal.findById(req.params.id);
@@ -83,7 +79,6 @@ router.post('/:id/contribute', async (req, res) => {
   }
 });
 
-// Delete a savings goal
 router.delete('/:id', async (req, res) => {
   try {
     const savingsGoal = await SavingsGoal.findById(req.params.id);

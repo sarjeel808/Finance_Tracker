@@ -4,24 +4,20 @@ const Expense = require('../models/Expense');
 const Budget = require('../models/Budget');
 const SavingsGoal = require('../models/SavingsGoal');
 
-// Get dashboard summary data
 router.get('/summary', async (req, res) => {
   try {
     const userId = req.query.userId || 'demo-user';
     
-    // Get current date ranges
     const currentDate = new Date();
     const currentMonthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const currentMonthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
     
-    // Get all data for the user
     const [expenses, budgets, savingsGoals] = await Promise.all([
       Expense.find({ userId }).sort({ date: -1 }),
       Budget.find({ userId }),
       SavingsGoal.find({ userId })
     ]);
     
-    // Calculate current month expenses
     const currentMonthExpenses = expenses.filter(expense => {
       const expenseDate = new Date(expense.date);
       return expenseDate >= currentMonthStart && expenseDate <= currentMonthEnd;
@@ -29,21 +25,17 @@ router.get('/summary', async (req, res) => {
     
     const monthlyTotal = currentMonthExpenses.reduce((sum, expense) => sum + expense.amount, 0);
     
-    // Calculate budget totals
     const totalBudget = budgets.reduce((sum, budget) => sum + budget.amount, 0);
     const totalSpent = budgets.reduce((sum, budget) => sum + (budget.spent || 0), 0);
     
-    // Calculate savings totals
     const totalSavingsTarget = savingsGoals.reduce((sum, goal) => sum + goal.targetAmount, 0);
     const totalSavingsCurrent = savingsGoals.reduce((sum, goal) => sum + goal.currentAmount, 0);
     
-    // Expense breakdown by category (current month)
     const expenseByCategory = currentMonthExpenses.reduce((acc, expense) => {
       acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
       return acc;
     }, {});
     
-    // Monthly trends (last 6 months)
     const monthlyTrends = [];
     for (let i = 5; i >= 0; i--) {
       const monthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
@@ -64,7 +56,6 @@ router.get('/summary', async (req, res) => {
       });
     }
     
-    // Recent transactions (last 10)
     const recentTransactions = expenses.slice(0, 10).map(expense => ({
       id: expense._id,
       description: expense.description,
@@ -103,11 +94,10 @@ router.get('/summary', async (req, res) => {
   }
 });
 
-// Get expense trends for charts
 router.get('/trends', async (req, res) => {
   try {
     const userId = req.query.userId || 'demo-user';
-    const period = req.query.period || '6months'; // 6months, 1year
+    const period = req.query.period || '6months'; 
     
     const expenses = await Expense.find({ userId }).sort({ date: -1 });
     
