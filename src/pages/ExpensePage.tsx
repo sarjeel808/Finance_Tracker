@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ExpensesTable from "@/components/ExpensesTable";
 import AddExpenseDialog from "@/components/AddExpenseDialog";
+import ExpenseChart from "@/components/ExpenseChart";
 
 const ExpensePage = () => {
 
@@ -17,9 +18,26 @@ const ExpensePage = () => {
         </div>
       </div>
 
+      {/* Monthly Expense Trends Chart */}
+      <Card className="border-gray-200 bg-white">
+        <CardHeader className="border-b border-gray-100">
+          <CardTitle className="text-black">Monthly Expense Trends</CardTitle>
+          <CardDescription className="text-gray-600">
+            Track your spending patterns across the last 6 months by category
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <ExpenseChart />
+        </CardContent>
+      </Card>
+
+      {/* All Expenses Table */}
       <Card className="border-gray-200 bg-white">
         <CardHeader className="border-b border-gray-100">
           <CardTitle className="text-black">All Expenses</CardTitle>
+          <CardDescription className="text-gray-600">
+            View and manage all your recorded expenses
+          </CardDescription>
         </CardHeader>
         <CardContent className="pt-6">
           <ExpensesTable />
