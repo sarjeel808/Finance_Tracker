@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { expenseApi } from "@/services/api";
 import { Expense } from "@/types/finance";
 import { useToast } from "@/hooks/use-toast";
+import EditExpenseDialog from "@/components/EditExpenseDialog";
 
 interface ExpensesTableProps {
   recent?: boolean;
@@ -16,6 +18,8 @@ interface ExpensesTableProps {
 const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   // Fetch expenses
   const { data: expenses = [], isLoading, error } = useQuery({
@@ -83,6 +87,16 @@ const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
     }
   };
 
+  const handleEdit = (expense: any) => {
+    setEditingExpense(expense);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleEditDialogClose = () => {
+    setIsEditDialogOpen(false);
+    setEditingExpense(null);
+  };
+
   if (isLoading) {
     return (
       <div className="text-center py-8 text-muted-foreground">Loading expenses...</div>
@@ -98,6 +112,7 @@ const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
   }
 
   return (
+    <>
     <Table>
       <TableHeader>
         <TableRow>
@@ -130,7 +145,7 @@ const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
                   <Button 
                     variant="ghost" 
                     size="icon"
-                    onClick={() => window.location.href = `/expenses?edit=${expense._id || expense.id}`}
+                    onClick={() => handleEdit(expense)}
                   >
                     <Edit className="h-4 w-4" />
                   </Button>
@@ -157,6 +172,13 @@ const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
         )}
       </TableBody>
     </Table>
+    
+    <EditExpenseDialog 
+      expense={editingExpense}
+      open={isEditDialogOpen}
+      onOpenChange={handleEditDialogClose}
+    />
+  </>
   );
 };
 
