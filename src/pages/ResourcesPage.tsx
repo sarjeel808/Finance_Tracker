@@ -14,15 +14,6 @@ const ResourcesPage = () => {
           Educational content to improve your financial knowledge
         </p>
       </div>
-
-      <div className="relative max-w-md">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-        <Input 
-          type="search" 
-          placeholder="Search resources..." 
-          className="pl-8 bg-gray-50 border-gray-300 focus:border-black focus:ring-black"
-        />
-      </div>
       
       <Tabs defaultValue="articles">
         <TabsList className="bg-gray-100 border-gray-200">

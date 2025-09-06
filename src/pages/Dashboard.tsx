@@ -1,14 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { PlusCircle, BarChart3 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 import RecentTransactions from "@/components/RecentTransactions";
 import SummaryCards from "@/components/SummaryCards";
 import ExpenseBreakdown from "@/components/ExpenseBreakdown";
 import BudgetProgress from "@/components/BudgetProgress";
+import AddExpenseDialog from "@/components/AddExpenseDialog";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="space-y-6 bg-white min-h-screen">
@@ -18,13 +15,7 @@ const Dashboard = () => {
           <p className="text-gray-600">Track your personal finances</p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-3">
-          <Button 
-            onClick={() => navigate('/expenses')}
-            className="bg-black text-white hover:bg-gray-800"
-          >
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Add Expense
-          </Button>
+          <AddExpenseDialog />
         </div>
       </div>
 
