@@ -7,13 +7,13 @@ import ExpenseChart from "@/components/ExpenseChart";
 const ExpensePage = () => {
 
   return (
-    <div className="space-y-6 bg-white min-h-screen">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+    <div className="space-y-4 sm:space-y-6 bg-white min-h-screen">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-black">Expenses</h1>
-          <p className="text-gray-600">Track your spending</p>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-black">Expenses</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Track your spending</p>
         </div>
-        <div className="mt-4 md:mt-0">
+        <div className="self-start sm:self-auto">
           <AddExpenseDialog />
         </div>
       </div>

@@ -113,16 +113,17 @@ const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
 
   return (
     <>
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Date</TableHead>
-          <TableHead>Description</TableHead>
-          <TableHead>Category</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-          <TableHead className="text-right">Actions</TableHead>
-        </TableRow>
-      </TableHeader>
+    <div className="overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="whitespace-nowrap">Date</TableHead>
+            <TableHead className="whitespace-nowrap">Description</TableHead>
+            <TableHead className="whitespace-nowrap">Category</TableHead>
+            <TableHead className="text-right whitespace-nowrap">Amount</TableHead>
+            <TableHead className="text-right whitespace-nowrap">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
       <TableBody>
         {filteredExpenses.length > 0 ? (
           filteredExpenses.map((expense: any) => (
@@ -171,7 +172,8 @@ const ExpensesTable = ({ recent, recurring }: ExpensesTableProps) => {
           </TableRow>
         )}
       </TableBody>
-    </Table>
+      </Table>
+    </div>
     
     <EditExpenseDialog 
       expense={editingExpense}

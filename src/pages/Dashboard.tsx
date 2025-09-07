@@ -8,20 +8,20 @@ import AddExpenseDialog from "@/components/AddExpenseDialog";
 const Dashboard = () => {
 
   return (
-    <div className="space-y-6 bg-white min-h-screen">
-      <div className="flex flex-col md:flex-row items-start justify-between">
+    <div className="space-y-4 sm:space-y-6 bg-white min-h-screen">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-black">Dashboard</h1>
-          <p className="text-gray-600">Track your personal finances</p>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-black">Dashboard</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Track your personal finances</p>
         </div>
-        <div className="mt-4 md:mt-0 flex gap-3">
+        <div className="flex gap-3 self-start sm:self-auto">
           <AddExpenseDialog />
         </div>
       </div>
 
       <SummaryCards />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
         <Card className="border-gray-200 bg-white">
           <CardHeader className="border-b border-gray-100">
             <CardTitle className="text-black">Expense Breakdown</CardTitle>

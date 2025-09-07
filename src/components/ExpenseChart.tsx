@@ -119,23 +119,23 @@ const ExpenseChart = () => {
   return (
     <div className="w-full">
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gray-50 rounded-lg p-4">
-          <div className="text-sm text-gray-600">Total ({timeRange} months)</div>
-          <div className="text-2xl font-bold text-black">${totalExpenses.toLocaleString()}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+          <div className="text-xs sm:text-sm text-gray-600">Total ({timeRange} months)</div>
+          <div className="text-xl sm:text-2xl font-bold text-black">${totalExpenses.toLocaleString()}</div>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4">
-          <div className="text-sm text-gray-600">Monthly Average</div>
-          <div className="text-2xl font-bold text-black">${averageMonthly.toLocaleString()}</div>
+        <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+          <div className="text-xs sm:text-sm text-gray-600">Monthly Average</div>
+          <div className="text-xl sm:text-2xl font-bold text-black">${averageMonthly.toLocaleString()}</div>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4">
-          <div className="text-sm text-gray-600">Categories</div>
-          <div className="text-2xl font-bold text-black">{categories.length}</div>
+        <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+          <div className="text-xs sm:text-sm text-gray-600">Categories</div>
+          <div className="text-xl sm:text-2xl font-bold text-black">{categories.length}</div>
         </div>
       </div>
       
       {/* Time Range Selector */}
-      <div className="flex justify-end gap-2 mb-4">
+      <div className="flex flex-wrap justify-center sm:justify-end gap-2 mb-4">
         <Button
           variant={timeRange === 3 ? "default" : "outline"}
           size="sm"
@@ -162,7 +162,7 @@ const ExpenseChart = () => {
         </Button>
       </div>
       
-      <div className="w-full h-[400px]">
+      <div className="w-full h-[300px] sm:h-[400px]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart 
           data={chartData} 

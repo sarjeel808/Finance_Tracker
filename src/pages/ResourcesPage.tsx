@@ -7,11 +7,11 @@ import ResourceCard from "@/components/ResourceCard";
 
 const ResourcesPage = () => {
   return (
-    <div className="space-y-6 bg-white min-h-screen">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-black">Financial Resources</h1>
-          <p className="text-gray-600">
+    <div className="space-y-4 sm:space-y-6 bg-white min-h-screen">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div className="flex-1">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-black">Financial Resources</h1>
+          <p className="text-gray-600 text-sm sm:text-base">
             Educational content to improve your financial knowledge
           </p>
         </div>
@@ -27,7 +27,7 @@ const ResourcesPage = () => {
       </div>
       
       <Tabs defaultValue="articles">
-        <TabsList className="bg-gray-100 border-gray-200">
+        <TabsList className="bg-gray-100 border-gray-200 grid w-full grid-cols-3">
           <TabsTrigger 
             value="articles"
             className="data-[state=active]:bg-white data-[state=active]:text-black text-gray-600"
@@ -49,7 +49,7 @@ const ResourcesPage = () => {
         </TabsList>
         
         <TabsContent value="articles" className="mt-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ResourceCard 
               title="Understanding Emergency Funds"
               description="Learn why you need an emergency fund and how to build one effectively."
@@ -108,7 +108,7 @@ const ResourcesPage = () => {
         </TabsContent>
         
         <TabsContent value="videos" className="mt-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ResourceCard 
               title="5 Financial Habits of Successful People"
               description="Learn the key habits that can transform your financial future."
@@ -149,7 +149,7 @@ const ResourcesPage = () => {
         </TabsContent>
         
         <TabsContent value="tools" className="mt-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ResourceCard 
               title="Compound Interest Calculator"
               description="See how your investments can grow over time with the power of compound interest."

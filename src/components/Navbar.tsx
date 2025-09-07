@@ -9,15 +9,22 @@ interface NavbarProps {
 
 const Navbar = ({ toggleSidebar }: NavbarProps) => {
   return (
-    <header className="border-b border-gray-200 bg-white h-16 flex items-center px-4 sticky top-0 z-30">
+    <header className="border-b border-gray-200 bg-white h-16 flex items-center px-3 sm:px-4 sticky top-0 z-30">
       <Button 
         variant="ghost" 
         size="icon" 
-        className="mr-4 text-gray-600 hover:text-black hover:bg-gray-100" 
+        className="mr-2 sm:mr-4 text-gray-600 hover:text-black hover:bg-gray-100 transition-all duration-200 hover:scale-105" 
         onClick={toggleSidebar}
+        aria-label="Toggle sidebar"
+        title="Toggle sidebar"
       >
         <Menu className="h-5 w-5" />
       </Button>
+      
+      {/* Mobile title - visible only on small screens */}
+      <div className="flex items-center lg:hidden">
+        <h1 className="text-lg font-semibold text-black">FinanceTrack</h1>
+      </div>
       
       {/* <div className="relative max-w-md w-full hidden md:flex items-center">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
